@@ -1,0 +1,10 @@
+{
+  "description": "Streamline group dining by allowing reservation owners to view and manage all participants' pre-orders in one unified screen, ensuring accurate totals and selections.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

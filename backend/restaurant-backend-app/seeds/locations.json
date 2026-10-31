@@ -1,0 +1,72 @@
+[
+  {
+    "id": "loc-riverside",
+    "address": "18 Riverside Walk",
+    "description": "Riverside dining room with a short seasonal menu.",
+    "imageUrl": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80",
+    "totalCapacity": 22,
+    "averageOccupancy": "55%",
+    "rating": 4.7,
+    "specialtyDishIds": [
+      "dish-riverside-greek-salad",
+      "dish-riverside-salmon",
+      "dish-riverside-berry-bowl"
+    ]
+  },
+  {
+    "id": "loc-market",
+    "address": "4 Market Street",
+    "description": "Market Hall counter with the same kitchen and one large shared table.",
+    "imageUrl": "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80",
+    "totalCapacity": 22,
+    "averageOccupancy": "70%",
+    "rating": 4.4,
+    "specialtyDishIds": [
+      "dish-market-hummus",
+      "dish-market-chicken",
+      "dish-market-yogurt"
+    ]
+  },
+  {
+    "id": "loc-harbor",
+    "address": "9 Pier Road",
+    "description": "Waterfront dining room with grilled fish and a short dessert list.",
+    "imageUrl": "https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?auto=format&fit=crop&w=1200&q=80",
+    "totalCapacity": 18,
+    "averageOccupancy": "60%",
+    "rating": 4.8,
+    "specialtyDishIds": [
+      "dish-harbor-shrimp",
+      "dish-harbor-cod",
+      "dish-harbor-lemon-tart"
+    ]
+  },
+  {
+    "id": "loc-garden",
+    "address": "27 Linden Lane",
+    "description": "Courtyard tables and a mostly plant-based menu.",
+    "imageUrl": "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=1200&q=80",
+    "totalCapacity": 22,
+    "averageOccupancy": "45%",
+    "rating": 4.6,
+    "specialtyDishIds": [
+      "dish-garden-greens",
+      "dish-garden-bowl",
+      "dish-garden-fruit"
+    ]
+  },
+  {
+    "id": "loc-station",
+    "address": "2 Platform Square",
+    "description": "Counter beside the station with quicker plates.",
+    "imageUrl": "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=1200&q=80",
+    "totalCapacity": 20,
+    "averageOccupancy": "80%",
+    "rating": 4.3,
+    "specialtyDishIds": [
+      "dish-station-toast",
+      "dish-station-burger",
+      "dish-station-ice-cream"
+    ]
+  }
+]

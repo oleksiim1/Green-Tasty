@@ -1,0 +1,34 @@
+# IDE / editor
+.idea/
+.cursor/
+.vscode/
+*.iml
+*.code-workspace
+
+# OS
+.DS_Store
+._*
+Thumbs.db
+
+# Node
+node_modules/
+
+# Local env
+.env
+.env.local
+
+# Infrastructure
+infra/terraform/
+**/.syndicate-config-*/
+**/syndicate_venv/
+
+# Terraform local state
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+crash.log
+crash.*.log
+
+README.md

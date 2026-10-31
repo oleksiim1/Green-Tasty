@@ -1,0 +1,158 @@
+[
+  {
+    "id": "table-riverside-1",
+    "locationId": "loc-riverside",
+    "tableNumber": 1,
+    "capacity": 2
+  },
+  {
+    "id": "table-riverside-2",
+    "locationId": "loc-riverside",
+    "tableNumber": 2,
+    "capacity": 2
+  },
+  {
+    "id": "table-riverside-3",
+    "locationId": "loc-riverside",
+    "tableNumber": 3,
+    "capacity": 4
+  },
+  {
+    "id": "table-riverside-4",
+    "locationId": "loc-riverside",
+    "tableNumber": 4,
+    "capacity": 4
+  },
+  {
+    "id": "table-riverside-5",
+    "locationId": "loc-riverside",
+    "tableNumber": 5,
+    "capacity": 6
+  },
+  {
+    "id": "table-riverside-6",
+    "locationId": "loc-riverside",
+    "tableNumber": 6,
+    "capacity": 4
+  },
+  {
+    "id": "table-market-1",
+    "locationId": "loc-market",
+    "tableNumber": 1,
+    "capacity": 2
+  },
+  {
+    "id": "table-market-2",
+    "locationId": "loc-market",
+    "tableNumber": 2,
+    "capacity": 4
+  },
+  {
+    "id": "table-market-3",
+    "locationId": "loc-market",
+    "tableNumber": 3,
+    "capacity": 4
+  },
+  {
+    "id": "table-market-4",
+    "locationId": "loc-market",
+    "tableNumber": 4,
+    "capacity": 8
+  },
+  {
+    "id": "table-market-5",
+    "locationId": "loc-market",
+    "tableNumber": 5,
+    "capacity": 4
+  },
+  {
+    "id": "table-harbor-1",
+    "locationId": "loc-harbor",
+    "tableNumber": 1,
+    "capacity": 2
+  },
+  {
+    "id": "table-harbor-2",
+    "locationId": "loc-harbor",
+    "tableNumber": 2,
+    "capacity": 2
+  },
+  {
+    "id": "table-harbor-3",
+    "locationId": "loc-harbor",
+    "tableNumber": 3,
+    "capacity": 4
+  },
+  {
+    "id": "table-harbor-4",
+    "locationId": "loc-harbor",
+    "tableNumber": 4,
+    "capacity": 4
+  },
+  {
+    "id": "table-harbor-5",
+    "locationId": "loc-harbor",
+    "tableNumber": 5,
+    "capacity": 6
+  },
+  {
+    "id": "table-garden-1",
+    "locationId": "loc-garden",
+    "tableNumber": 1,
+    "capacity": 2
+  },
+  {
+    "id": "table-garden-2",
+    "locationId": "loc-garden",
+    "tableNumber": 2,
+    "capacity": 4
+  },
+  {
+    "id": "table-garden-3",
+    "locationId": "loc-garden",
+    "tableNumber": 3,
+    "capacity": 4
+  },
+  {
+    "id": "table-garden-4",
+    "locationId": "loc-garden",
+    "tableNumber": 4,
+    "capacity": 6
+  },
+  {
+    "id": "table-garden-5",
+    "locationId": "loc-garden",
+    "tableNumber": 5,
+    "capacity": 6
+  },
+  {
+    "id": "table-station-1",
+    "locationId": "loc-station",
+    "tableNumber": 1,
+    "capacity": 2
+  },
+  {
+    "id": "table-station-2",
+    "locationId": "loc-station",
+    "tableNumber": 2,
+    "capacity": 2
+  },
+  {
+    "id": "table-station-3",
+    "locationId": "loc-station",
+    "tableNumber": 3,
+    "capacity": 4
+  },
+  {
+    "id": "table-station-4",
+    "locationId": "loc-station",
+    "tableNumber": 4,
+    "capacity": 4
+  },
+  {
+    "id": "table-station-5",
+    "locationId": "loc-station",
+    "tableNumber": 5,
+    "capacity": 8
+  }
+]

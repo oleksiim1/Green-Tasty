@@ -1,0 +1,72 @@
+[
+  {
+    "userId": "waiter-riverside-anna",
+    "email": "anna.koleva@green-tasty.example",
+    "locationId": "loc-riverside",
+    "createdAt": "2026-10-01T09:00:00.000Z",
+    "reservations": []
+  },
+  {
+    "userId": "waiter-riverside-mark",
+    "email": "mark.petrov@green-tasty.example",
+    "locationId": "loc-riverside",
+    "createdAt": "2026-10-01T09:05:00.000Z",
+    "reservations": []
+  },
+  {
+    "userId": "waiter-market-elena",
+    "email": "elena.ivanova@green-tasty.example",
+    "locationId": "loc-market",
+    "createdAt": "2026-10-01T09:10:00.000Z",
+    "reservations": []
+  },
+  {
+    "userId": "waiter-market-georgi",
+    "email": "georgi.dimitrov@green-tasty.example",
+    "locationId": "loc-market",
+    "createdAt": "2026-10-01T09:15:00.000Z",
+    "reservations": []
+  },
+  {
+    "userId": "waiter-harbor-sofia",
+    "email": "sofia.marinova@green-tasty.example",
+    "locationId": "loc-harbor",
+    "createdAt": "2026-10-01T09:20:00.000Z",
+    "reservations": []
+  },
+  {
+    "userId": "waiter-harbor-ivan",
+    "email": "ivan.stoyanov@green-tasty.example",
+    "locationId": "loc-harbor",
+    "createdAt": "2026-10-01T09:25:00.000Z",
+    "reservations": []
+  },
+  {
+    "userId": "waiter-garden-maya",
+    "email": "maya.nikolova@green-tasty.example",
+    "locationId": "loc-garden",
+    "createdAt": "2026-10-01T09:30:00.000Z",
+    "reservations": []
+  },
+  {
+    "userId": "waiter-garden-petar",
+    "email": "petar.georgiev@green-tasty.example",
+    "locationId": "loc-garden",
+    "createdAt": "2026-10-01T09:35:00.000Z",
+    "reservations": []
+  },
+  {
+    "userId": "waiter-station-nina",
+    "email": "nina.petrova@green-tasty.example",
+    "locationId": "loc-station",
+    "createdAt": "2026-10-01T09:40:00.000Z",
+    "reservations": []
+  },
+  {
+    "userId": "waiter-station-kaloyan",
+    "email": "kaloyan.iliev@green-tasty.example",
+    "locationId": "loc-station",
+    "createdAt": "2026-10-01T09:45:00.000Z",
+    "reservations": []
+  }
+]

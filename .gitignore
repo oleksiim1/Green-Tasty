@@ -33,3 +33,4 @@ crash.*.log
 
 README.md
 FE_Homework/
+backend/restaurant-backend-app/swagger_src/swagger-ui/swagger-endpoints.yaml

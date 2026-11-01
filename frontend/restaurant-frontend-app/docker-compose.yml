@@ -1,0 +1,16 @@
+services:
+  web:
+    build:
+      context: .
+      args:
+        BACKEND_URL: ${BACKEND_URL}
+    restart: unless-stopped
+    ports:
+      - "8090:80"
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    command: tunnel --no-autoupdate --url http://web:80
+    depends_on:
+      - web

@@ -169,6 +169,15 @@
           >
             Pre-order
           </button>
+          @if (r().guestCount >= 2) {
+            <button
+              type="button"
+              class="button button--secondary button--large"
+              (click)="onGroupPreOrder()"
+            >
+              Group Pre-Order
+            </button>
+          }
         }
       }
 

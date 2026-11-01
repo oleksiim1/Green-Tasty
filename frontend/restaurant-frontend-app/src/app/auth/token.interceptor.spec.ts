@@ -12,10 +12,11 @@ describe('tokenInterceptor', () => {
   let http: HttpClient;
   let httpMock: HttpTestingController;
   let toastService: jasmine.SpyObj<ToastService>;
+  let authService: jasmine.SpyObj<AuthenticationService>;
 
   beforeEach(() => {
     toastService = jasmine.createSpyObj<ToastService>('ToastService', ['error']);
-    const authService = jasmine.createSpyObj<AuthenticationService>('AuthenticationService', [
+    authService = jasmine.createSpyObj<AuthenticationService>('AuthenticationService', [
       'getTokens',
     ]);
     authService.getTokens.and.returnValue(null);
@@ -59,5 +60,25 @@ describe('tokenInterceptor', () => {
 
     expect(toastService.error).not.toHaveBeenCalled();
     expect(receivedStatus).toBe(400);
+  });
+
+  it('attaches the Cognito id token to owner group routes', () => {
+    authService.getTokens.and.returnValue({ idToken: 'owner-token', accessToken: 'access-token' });
+
+    http.get('https://test.api/guest/groups/grp-1/sessions').subscribe();
+
+    const request = httpMock.expectOne('https://test.api/guest/groups/grp-1/sessions');
+    expect(request.request.headers.get('Authorization')).toBe('Bearer owner-token');
+    request.flush({ participants: [], total: 0 });
+  });
+
+  it('leaves anonymous guest session requests without a Cognito token', () => {
+    authService.getTokens.and.returnValue({ idToken: 'owner-token', accessToken: 'access-token' });
+
+    http.post('https://test.api/guest/sessions', { name: 'Alex' }).subscribe();
+
+    const request = httpMock.expectOne('https://test.api/guest/sessions');
+    expect(request.request.headers.has('Authorization')).toBeFalse();
+    request.flush({});
   });
 });

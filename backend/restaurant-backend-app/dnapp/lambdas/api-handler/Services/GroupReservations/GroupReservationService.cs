@@ -8,6 +8,7 @@ using APIHandler.Repositories.GuestSessions;
 using APIHandler.Repositories.Reservations;
 using APIHandler.Repositories.Tables;
 using APIHandler.Services.Auth;
+using APIHandler.Services.GuestSessions;
 using APIHandler.Services.Locations;
 using System;
 using System.Threading.Tasks;
@@ -20,7 +21,8 @@ public class GroupReservationService(
     IReservationRepository reservationRepository,
     IGuestSessionRepository guestSessionRepository,
     IUserService userService,
-    ILocationService locationService) : IGroupReservationService
+    ILocationService locationService,
+    IGuestSessionService guestSessionService) : IGroupReservationService
 {
     private const string DefaultRestaurantName = "Green & Tasty";
 
@@ -88,10 +90,10 @@ public class GroupReservationService(
     public async Task CreateGroupReservationIfDoesNotExistAsync(string userId, string reservationId)
     {
         GroupReservation? group = await groupReservationRepository.GetByReservationIdAsync(reservationId);
-        if (group is not null)
-            return;
+        if (group is null)
+            await CreateGroupReservationAsync(reservationId);
 
-        await CreateGroupReservationAsync(reservationId);
+        await guestSessionService.GetOwnerGuestSessionIdAsync(userId, reservationId);
     }
 
     public async Task UpdateGroupReservationStatusAsync(string groupReservationId, GroupReservationStatus status)

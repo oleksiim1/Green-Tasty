@@ -845,7 +845,7 @@ public class GuestSessionServiceTests
     }
 
     [Fact]
-    public async Task GetOwnerGuestSessionIdAsync_MissingOwnerSession_ThrowsGuestSessionNotFound()
+    public async Task GetOwnerGuestSessionIdAsync_MissingOwnerSession_CreatesOneFromTheOrder()
     {
         var group = OpenGroup("group-1", "reservation-1");
         var reservation = OwnedReservation(group, "owner-1");
@@ -858,9 +858,31 @@ public class GuestSessionServiceTests
         _mockGuestSessionRepository
             .Setup(r => r.GetAllByGroupReservationIdAsync(group.GroupReservationId))
             .ReturnsAsync([Session("guest-session", group.GroupReservationId, "Olena", false, false)]);
+        _mockOrderRepository
+            .Setup(r => r.GetOrderByReservationIdAsync(reservation.Id))
+            .ReturnsAsync(new Order
+            {
+                OrderId = "order-1",
+                CustomerId = "owner-1",
+                ReservationId = reservation.Id,
+                ReservationAddress = "18 Riverside Walk",
+                ReservationTime = "Nov 03, 2026, 4:30 PM - 6:00 PM",
+                Dishes = [Item("dish-riverside-cake", 1)]
+            });
 
-        await Assert.ThrowsAsync<GuestSessionNotFoundException>(() =>
-            _guestSessionService.GetOwnerGuestSessionIdAsync("owner-1", reservation.Id));
+        GuestSession? saved = null;
+        _mockGuestSessionRepository
+            .Setup(r => r.SaveAsync(It.IsAny<GuestSession>()))
+            .Callback<GuestSession>(session => saved = session)
+            .Returns(Task.CompletedTask);
+
+        var result = await _guestSessionService.GetOwnerGuestSessionIdAsync("owner-1", reservation.Id);
+
+        Assert.NotNull(saved);
+        Assert.True(saved!.IsOwnerSession);
+        Assert.Equal("owner-1", saved.OwnerUserId);
+        Assert.Equal(saved.Id, result.GuestSessionId);
+        Assert.Contains(saved.Dishes, dish => dish.DishId == "dish-riverside-cake" && dish.Quantity == 1);
     }
 
     [Fact]

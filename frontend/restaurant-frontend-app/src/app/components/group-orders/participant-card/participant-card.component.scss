@@ -1,0 +1,154 @@
+@use 'app/shared/styles/abstracts/colors' as color;
+
+.card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  background: color.$neutral-0;
+  border: 1px solid color.$neutral-200;
+  border-radius: 16px;
+}
+
+.card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px 16px;
+}
+
+.heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  color: color.$neutral-900;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+
+  &.submitted {
+    color: color.$green-800;
+    background: color.$green-100;
+  }
+
+  &.pending {
+    color: color.$orange-600;
+    background: color.$orange-100;
+  }
+}
+
+.remove {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: color.$green-600;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  cursor: pointer;
+
+  &:hover {
+    color: color.$green-800;
+  }
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.initial {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: color.$green-100;
+  color: color.$green-800;
+  font-weight: 600;
+}
+
+.name,
+.qty,
+.price,
+.empty,
+.subtotal {
+  margin: 0;
+}
+
+.name {
+  color: color.$neutral-900;
+}
+
+.qty,
+.price {
+  color: color.$neutral-700;
+  white-space: nowrap;
+}
+
+.price {
+  font-weight: 600;
+}
+
+.empty {
+  color: color.$neutral-600;
+}
+
+.subtotal {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 12px;
+  border-top: 1px solid color.$neutral-200;
+  font-weight: 600;
+}
+
+@media (max-width: 375px) {
+  .card {
+    padding: 16px;
+  }
+
+  .item {
+    grid-template-columns: 40px minmax(0, 1fr);
+  }
+
+  .qty,
+  .price {
+    grid-column: 2;
+  }
+}

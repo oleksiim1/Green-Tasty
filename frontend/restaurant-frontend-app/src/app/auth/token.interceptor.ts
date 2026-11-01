@@ -17,10 +17,14 @@ export const tokenInterceptor: HttpInterceptorFn = (
 ) => {
   const toastr = inject(ToastService);
 
-  // IMPORTANT: do not modify Guest endpoints at all.
-  // Guest flow uses a different token (guest session token) and we must not touch the body.
-  // Otherwise we break POST /guest/sessions payload.
-  if (req.url.includes('/guest/')) {
+  // Anonymous guest links (/guest/sessions, /guest/invites) carry their own session
+  // token in the body or path. Do not attach the Cognito id token — that breaks
+  // POST /guest/sessions. Owner routes under /guest/groups require Cognito, so
+  // they fall through and receive the logged-in user's token.
+  const isAnonymousGuestRequest =
+    req.url.includes('/guest/sessions') || req.url.includes('/guest/invites/');
+
+  if (isAnonymousGuestRequest) {
     return next(req).pipe(
       catchError((error: HttpErrorResponse) => {
         console.log(error);

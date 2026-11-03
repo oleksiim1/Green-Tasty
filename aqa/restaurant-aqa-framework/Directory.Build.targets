@@ -1,0 +1,24 @@
+<Project>
+
+  <!--
+    Smart App Control blocks two unsigned TUnit 1.72.10 analyzer assemblies on this PC:
+    TUnit.Assertions.Analyzers.dll and the Roslyn 4.14 source generator (0x800711C7).
+    There is no per-file allow list. The assertions analyzer is diagnostics-only, and the
+    same package ships a Roslyn 4.7 source generator that Smart App Control allows.
+    Windows builds use that pair so `dotnet build` can finish with Smart App Control left on.
+  -->
+  <Target Name="AvoidSmartAppControlBlockedTUnitAnalyzers"
+          AfterTargets="ResolveLockFileAnalyzers"
+          Condition="$([MSBuild]::IsOSPlatform('windows'))">
+    <ItemGroup>
+      <Analyzer Remove="@(Analyzer)" Condition="$([System.String]::Copy('%(Identity)').Contains('TUnit.Assertions.Analyzers.dll'))" />
+      <_BlockedTUnitGenerator Include="@(Analyzer)" Condition="$([System.String]::Copy('%(Identity)').Contains('roslyn4.14')) and '%(Filename)' == 'TUnit.Core.SourceGenerator'" />
+      <Analyzer Remove="@(_BlockedTUnitGenerator)" />
+      <Analyzer Include="$(NuGetPackageRoot)tunit.core\1.72.10\analyzers\dotnet\roslyn4.7\cs\TUnit.Core.SourceGenerator.dll"
+                Condition="'@(_BlockedTUnitGenerator)' != '' and Exists('$(NuGetPackageRoot)tunit.core\1.72.10\analyzers\dotnet\roslyn4.7\cs\TUnit.Core.SourceGenerator.dll')" />
+    </ItemGroup>
+    <Error Condition="'@(_BlockedTUnitGenerator)' != '' and !Exists('$(NuGetPackageRoot)tunit.core\1.72.10\analyzers\dotnet\roslyn4.7\cs\TUnit.Core.SourceGenerator.dll')"
+           Text="Smart App Control blocked the Roslyn 4.14 TUnit source generator, and the Roslyn 4.7 fallback is not in the NuGet cache." />
+  </Target>
+
+</Project>

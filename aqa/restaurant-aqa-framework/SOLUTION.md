@@ -41,8 +41,6 @@ RP_API_KEY=
 
 Leave any of them empty and the agent stays off. A value already set in the shell wins over `.env`, so clear a stale `RP_API_KEY` there before the next run. A UUID copied from the key list, or the placeholder text, is rejected and the launches page stays empty. The launch is named Restaurant AQA. Its header can say Failed while every scenario passed, because the feature row is closed as skipped. Passing steps have no log lines.
 
-**Cloud pipeline.** The workflows are `.github/workflows/aqa-quality.yml` (push and pull request: format, build, Gherkin lint, test discovery) and `aqa-tests.yml` (nightly, and on demand under Actions → AQA Tests → Run workflow). Push the repository, then under Settings → Secrets and variables → Actions add variables `AQA_UI_URL`, `AQA_API_URL`, `AQA_TESTTABLE_ID` and secrets `AQA_WAITER_USERNAME`, `AQA_WAITER_PASSWORD`, `AQA_ADMIN_USERNAME`, `AQA_ADMIN_PASSWORD`, `AQA_TESTTABLE_WAITER_USERNAME`, `AQA_TESTTABLE_WAITER_PASSWORD`, `RP_URL`, `RP_PROJECT`, `RP_API_KEY`. One failing scenario does not skip the rest. `TestResults/` is uploaded either way, and the job is marked failed only after that upload. A launch from GitHub appears in Portal only when `RP_URL` is a host the runner can reach. The Portal on your laptop is for local runs.
-
 ## Behaviour the homework leaves open
 
 The tests follow the deployed API and group page. Repeat submit is level 2 and is out of scope.

@@ -14,6 +14,13 @@ public sealed class DishesApi(IAPIRequestContext api) : ApiClientBase(api)
             Headers = Headers(bearerToken),
         });
 
+    public Task<IAPIResponse> UpdateDishAsync(string dishId, CreateDishRequest request, string? bearerToken = null) =>
+        PutAsync(Url($"/dishes/{dishId}"), new APIRequestContextOptions
+        {
+            DataString = Serialize(request),
+            Headers = Headers(bearerToken),
+        });
+
     public Task<IAPIResponse> GetDishesAsync(
         string? dishType = null,
         DishSortOrder? sortBy = null,

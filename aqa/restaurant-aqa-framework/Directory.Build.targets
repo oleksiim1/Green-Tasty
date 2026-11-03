@@ -14,10 +14,10 @@
       <Analyzer Remove="@(Analyzer)" Condition="$([System.String]::Copy('%(Identity)').Contains('TUnit.Assertions.Analyzers.dll'))" />
       <_BlockedTUnitGenerator Include="@(Analyzer)" Condition="$([System.String]::Copy('%(Identity)').Contains('roslyn4.14')) and '%(Filename)' == 'TUnit.Core.SourceGenerator'" />
       <Analyzer Remove="@(_BlockedTUnitGenerator)" />
-      <Analyzer Include="$(NuGetPackageRoot)tunit.core\1.72.10\analyzers\dotnet\roslyn4.7\cs\TUnit.Core.SourceGenerator.dll"
-                Condition="'@(_BlockedTUnitGenerator)' != '' and Exists('$(NuGetPackageRoot)tunit.core\1.72.10\analyzers\dotnet\roslyn4.7\cs\TUnit.Core.SourceGenerator.dll')" />
+      <Analyzer Include="$([MSBuild]::EnsureTrailingSlash($(NuGetPackageRoot)))tunit.core\1.72.10\analyzers\dotnet\roslyn4.7\cs\TUnit.Core.SourceGenerator.dll"
+                Condition="'@(_BlockedTUnitGenerator)' != '' and Exists('$([MSBuild]::EnsureTrailingSlash($(NuGetPackageRoot)))tunit.core\1.72.10\analyzers\dotnet\roslyn4.7\cs\TUnit.Core.SourceGenerator.dll')" />
     </ItemGroup>
-    <Error Condition="'@(_BlockedTUnitGenerator)' != '' and !Exists('$(NuGetPackageRoot)tunit.core\1.72.10\analyzers\dotnet\roslyn4.7\cs\TUnit.Core.SourceGenerator.dll')"
+    <Error Condition="'@(_BlockedTUnitGenerator)' != '' and !Exists('$([MSBuild]::EnsureTrailingSlash($(NuGetPackageRoot)))tunit.core\1.72.10\analyzers\dotnet\roslyn4.7\cs\TUnit.Core.SourceGenerator.dll')"
            Text="Smart App Control blocked the Roslyn 4.14 TUnit source generator, and the Roslyn 4.7 fallback is not in the NuGet cache." />
   </Target>
 

@@ -24,8 +24,14 @@ public static class ApiResponseExtensions
         try
         {
             var parsed = JsonSerializer.Deserialize<JsonElement>(json);
-            if (parsed.ValueKind == JsonValueKind.Object && parsed.TryGetProperty("error", out var error))
-                return error.GetString() ?? json;
+            if (parsed.ValueKind == JsonValueKind.Object)
+            {
+                // CreateErrorResponse uses "error". CreateErrorCodeResponse (validation) uses "message".
+                if (parsed.TryGetProperty("error", out var error) && error.ValueKind == JsonValueKind.String)
+                    return error.GetString() ?? json;
+                if (parsed.TryGetProperty("message", out var message) && message.ValueKind == JsonValueKind.String)
+                    return message.GetString() ?? json;
+            }
         }
         catch (JsonException)
         {

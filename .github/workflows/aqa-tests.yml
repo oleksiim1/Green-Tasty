@@ -1,0 +1,57 @@
+name: AQA Tests
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 2 * * *"
+
+jobs:
+  tests:
+    name: Run the scenarios
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: aqa/restaurant-aqa-framework
+    env:
+      UI_URL: ${{ vars.AQA_UI_URL }}
+      API_URL: ${{ vars.AQA_API_URL }}
+      TESTTABLE_ID: ${{ vars.AQA_TESTTABLE_ID }}
+      WAITER_USERNAME: ${{ secrets.AQA_WAITER_USERNAME }}
+      WAITER_PASSWORD: ${{ secrets.AQA_WAITER_PASSWORD }}
+      ADMIN_USERNAME: ${{ secrets.AQA_ADMIN_USERNAME }}
+      ADMIN_PASSWORD: ${{ secrets.AQA_ADMIN_PASSWORD }}
+      TESTTABLE_WAITER_USERNAME: ${{ secrets.AQA_TESTTABLE_WAITER_USERNAME }}
+      TESTTABLE_WAITER_PASSWORD: ${{ secrets.AQA_TESTTABLE_WAITER_PASSWORD }}
+      RP_URL: ${{ secrets.RP_URL }}
+      RP_PROJECT: ${{ secrets.RP_PROJECT }}
+      RP_API_KEY: ${{ secrets.RP_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Build
+        run: dotnet build --nologo -warnaserror
+
+      - name: Install Playwright
+        run: ./bin/Debug/net10.0/playwright.sh install --with-deps chromium
+
+      - name: Run tests
+        id: tests
+        continue-on-error: true
+        run: dotnet run --no-build -- --report-trx
+
+      - name: Upload TestResults
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aqa-test-results
+          path: aqa/restaurant-aqa-framework/TestResults/
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Fail the job when tests failed
+        if: steps.tests.outcome == 'failure'
+        run: exit 1

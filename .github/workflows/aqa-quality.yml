@@ -1,0 +1,45 @@
+name: AQA Quality
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  quality:
+    name: Format, build, lint, discover
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: aqa/restaurant-aqa-framework
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: No generated feature files are tracked
+        working-directory: .
+        run: |
+          tracked=$(git ls-files "*.feature.cs")
+          if [ -n "$tracked" ]; then
+            echo "Generated feature files must stay untracked:"
+            echo "$tracked"
+            exit 1
+          fi
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Format check
+        run: dotnet format restaurant-aqa-framework.csproj --verify-no-changes --verbosity minimal
+
+      - name: Build
+        run: dotnet build --nologo -warnaserror
+
+      - name: Gherkin lint
+        run: npx --yes gherkin-lint -c .gherkin-lintrc "Features/*.feature"
+
+      - name: Discover tests
+        run: dotnet run --no-build -- --list-tests

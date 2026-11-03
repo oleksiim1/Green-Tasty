@@ -19,6 +19,25 @@ public sealed class OutcomeStepDefinitions(Actor actor) : StepDefinitionBase(act
         await Assert.That(outcome.ErrorMessage).IsEqualTo(message);
     }
 
+    [Then("the owner is told the guest could not be found")]
+    public async Task ThenGuestCouldNotBeFound()
+    {
+        var outcome = await Actor.AsksForAsync(new TheOutcome());
+
+        await Assert.That(outcome.Status).IsEqualTo(404).Because($"response body was: {outcome.Body}");
+        await Assert.That(outcome.ErrorMessage).Contains("Guest session");
+        await Assert.That(outcome.ErrorMessage).Contains("not found");
+    }
+
+    [Then("the visitor must sign in")]
+    public async Task ThenVisitorMustSignIn()
+    {
+        var outcome = await Actor.AsksForAsync(new TheOutcome());
+
+        await Assert.That(outcome.Status).IsEqualTo(401).Because($"response body was: {outcome.Body}");
+        await Assert.That(outcome.ErrorMessage).Contains("Unauthorized", StringComparison.OrdinalIgnoreCase);
+    }
+
     [Then("sign-in is refused")]
     public async Task ThenSignInIsRefused()
     {

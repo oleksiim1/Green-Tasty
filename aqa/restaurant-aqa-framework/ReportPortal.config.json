@@ -1,0 +1,12 @@
+{
+  "Enabled": false,
+  "Server": {
+    "Url": "http://localhost:8080",
+    "Project": "default_personal",
+    "ApiKey": ""
+  },
+  "Launch": {
+    "Name": "Restaurant AQA",
+    "Description": "Direction 1 level 3"
+  }
+}

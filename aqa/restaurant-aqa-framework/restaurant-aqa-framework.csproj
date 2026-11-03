@@ -16,6 +16,7 @@
     <PackageReference Include="dotenv.net" Version="4.2.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.10.1" />
     <PackageReference Include="Microsoft.Playwright" Version="1.63.0" />
+    <PackageReference Include="ReportPortal.Reqnroll" Version="1.6.0" />
     <PackageReference Include="Reqnroll.TUnit" Version="3.3.4" />
     <PackageReference Include="TUnit" Version="1.72.10" />
   </ItemGroup>
